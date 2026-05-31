@@ -172,13 +172,12 @@
   .settings-row-sub { font-size: 0.8rem; color: var(--text2); margin-top: 2px; }
   .settings-row-right { flex-shrink: 0; }
 
-  /* Toggle switch */
-  .toggle { position: relative; width: 44px; height: 26px; }
-  .toggle input { opacity: 0; width: 0; height: 0; }
-  .toggle-slider { position: absolute; inset: 0; background: var(--border2); border-radius: 999px; cursor: pointer; transition: background 0.2s; }
-  .toggle-slider::before { content: ''; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform 0.2s; }
-  .toggle input:checked + .toggle-slider { background: var(--accent); }
-  .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+  /* Toggle switch — button based for reliability */
+  .toggle-btn { display: inline-flex; align-items: center; justify-content: flex-start; width: 48px; height: 28px; border-radius: 999px; background: var(--border2); border: none; cursor: pointer; padding: 3px; transition: background 0.2s, justify-content 0s; flex-shrink: 0; position: relative; }
+  .toggle-btn.on { background: var(--accent); }
+  .toggle-btn-knob { width: 22px; height: 22px; border-radius: 50%; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.25); display: block; position: absolute; left: 3px; transition: left 0.2s; }
+  .toggle-btn.on .toggle-btn-knob { left: calc(100% - 25px); }
+  .toggle { display: none; }
 
   /* Segment control */
   .segment { display: flex; background: var(--surface2); border-radius: 8px; padding: 3px; gap: 2px; }
@@ -255,6 +254,7 @@
         <button data-page="add" onclick="navigate('add')">+ Add</button>
         <button data-page="settings" onclick="navigate('settings')">Settings</button>
       </nav>
+      <button id="header-dark-btn" onclick="toggleDark()" title="Toggle dark mode" style="background:none;border:1px solid var(--border);border-radius:8px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--text2);margin-left:8px;transition:all 0.15s;flex-shrink:0;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='none'">🌙</button>
     </div>
   </header>
 
@@ -350,7 +350,7 @@
         <div class="settings-row">
           <div><div class="settings-row-label">Dark mode</div><div class="settings-row-sub">Easy on the eyes at the gym</div></div>
           <div class="settings-row-right">
-            <label class="toggle"><input type="checkbox" id="toggle-dark" onchange="toggleDark(this.checked)"/><span class="toggle-slider"></span></label>
+            <button class="toggle-btn" id="toggle-dark" onclick="toggleDark()" aria-label="Toggle dark mode"><span class="toggle-btn-knob"></span></button>
           </div>
         </div>
       </div>
@@ -394,7 +394,7 @@
         <div class="settings-row">
           <div><div class="settings-row-label">Auto-start rest timer</div><div class="settings-row-sub">Starts automatically when you tap a set</div></div>
           <div class="settings-row-right">
-            <label class="toggle"><input type="checkbox" id="toggle-timer" onchange="saveTimerSetting()"/><span class="toggle-slider"></span></label>
+            <button class="toggle-btn" id="toggle-timer" onclick="saveTimerSetting()" aria-label="Toggle rest timer"><span class="toggle-btn-knob"></span></button>
           </div>
         </div>
         <div class="settings-row">
@@ -981,8 +981,13 @@ function renderSettings() {
   const s = getSettings();
   const profile = getProfile();
   const unit = s.unit || 'lbs';
-  document.getElementById('toggle-dark').checked = s.dark || false;
-  document.getElementById('toggle-timer').checked = s.timerEnabled !== false;
+  // Dark mode toggle
+  const darkBtn = document.getElementById('toggle-dark');
+  if (darkBtn) { if (s.dark) darkBtn.classList.add('on'); else darkBtn.classList.remove('on'); }
+  // Timer toggle
+  const timerBtn = document.getElementById('toggle-timer');
+  if (timerBtn) { if (s.timerEnabled !== false) timerBtn.classList.add('on'); else timerBtn.classList.remove('on'); }
+  // Profile fields
   document.getElementById('s-bw').value = unit==='kg' ? lbsToKg(profile.bodyweight||180) : (profile.bodyweight||180);
   document.getElementById('s-h').value = unit==='kg' ? Math.round((profile.height||70)*2.54) : (profile.height||70);
   document.getElementById('s-bw-unit').textContent = unit;
@@ -998,9 +1003,15 @@ function renderSettings() {
   });
 }
 
-function toggleDark(on) {
-  document.documentElement.setAttribute('data-theme', on ? 'dark' : 'light');
-  const s = getSettings(); s.dark = on; saveSettings(s);
+function toggleDark() {
+  const s = getSettings();
+  s.dark = !s.dark;
+  saveSettings(s);
+  document.documentElement.setAttribute('data-theme', s.dark ? 'dark' : 'light');
+  const btn = document.getElementById('toggle-dark');
+  if (btn) { if (s.dark) btn.classList.add('on'); else btn.classList.remove('on'); }
+  const hBtn = document.getElementById('header-dark-btn');
+  if (hBtn) hBtn.textContent = s.dark ? '☀️' : '🌙';
 }
 
 function setUnit(unit) {
@@ -1018,8 +1029,11 @@ function setRestDuration(secs) {
 
 function saveTimerSetting() {
   const s = getSettings();
-  s.timerEnabled = document.getElementById('toggle-timer').checked;
+  const current = s.timerEnabled !== false; // default true
+  s.timerEnabled = !current;
   saveSettings(s);
+  const btn = document.getElementById('toggle-timer');
+  if (btn) { if (s.timerEnabled) btn.classList.add('on'); else btn.classList.remove('on'); }
 }
 
 function saveSettingsProfile() {
@@ -1137,6 +1151,8 @@ function formatDate(dateStr) {
 (function init() {
   const s = getSettings();
   if (s.dark) document.documentElement.setAttribute('data-theme', 'dark');
+  const hBtn = document.getElementById('header-dark-btn');
+  if (hBtn) hBtn.textContent = s.dark ? '☀️' : '🌙';
   renderHome();
 })();
 </script>

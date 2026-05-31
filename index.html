@@ -495,6 +495,102 @@
 // ═══════════════════════════════════════════════════════
 const DEFAULT_WORKOUTS = [
   {
+    id: "cardio-1", name: "Cardio Burn", tag: "Cardio", tagStyle: "tag-blue",
+    duration: "~60 min", intensity: "High",  addedDate: "2026-05-31",
+    sections: [
+      { title:"Warm-up", tag:"warm", note:"~8 min — easy pace, loosen up",
+        exercises: [
+          { id:"caw1", name:"Treadmill easy walk/jog", sets:1, detail:"5 min — start at 3.5 mph, ramp to 5 mph by min 3", tip:"Just get blood moving. Shake out the arms and shoulders.", muscles:["Cardio","Full body"], isTimer:true },
+          { id:"caw2", name:"Dynamic leg swings + hip openers", sets:1, detail:"10 each direction each leg — standing, hold wall", tip:"Opens up the hips before any running or jumping work.", muscles:["Hip flexors","Glutes"], isTimer:true },
+          { id:"caw3", name:"High knees in place", sets:1, detail:"3 × 20 reps — drive knees to hip height, pump arms", tip:"Keep a tight core. This is the last easy thing you'll do.", muscles:["Cardio","Hip flexors","Calves"] }
+        ]
+      },
+      { title:"Treadmill Intervals", tag:"chest", rest:"Walk 60s between intervals",
+        exercises: [
+          { id:"cai1", name:"Sprint intervals", sets:8, detail:"8 × 30s all-out sprint — 9–12 mph depending on fitness", tip:"30s hard, then hop off or straddle the belt and walk 60s. This is the core of the session.", muscles:["Cardio","Quads","Hamstrings","Calves"] },
+          { id:"cai2", name:"Incline power walk", sets:1, detail:"5 min — 6–8% incline, 3.5 mph, arms pumping", tip:"Rest your heart rate but keep moving. Don't hold the rails.", muscles:["Cardio","Glutes","Calves"], isTimer:true }
+        ]
+      },
+      { title:"Bike Intervals", tag:"back", rest:"Easy pedal 45s between rounds",
+        exercises: [
+          { id:"cab1", name:"Stationary bike sprint", sets:6, detail:"6 × 40s max effort — crank up the resistance", tip:"Stand up on the pedals for the last 15s of each interval. Resistance should feel like uphill.", muscles:["Cardio","Quads","Glutes"] },
+          { id:"cab2", name:"Seated easy cool-down pedal", sets:1, detail:"3 min — low resistance, spin out the legs", tip:"Bring heart rate back down before the next block.", muscles:["Cardio","Quads"], isTimer:true }
+        ]
+      },
+      { title:"Elliptical Blast", tag:"shoulder", rest:"None — continuous",
+        exercises: [
+          { id:"cae1", name:"Elliptical max effort push", sets:1, detail:"5 min — highest resistance you can sustain, push and pull the handles", tip:"Resistance at 12–16. Drive through full range — don't just let momentum carry you.", muscles:["Cardio","Full body"], isTimer:true },
+          { id:"cae2", name:"Elliptical reverse stride", sets:1, detail:"3 min — reverse direction, medium resistance", tip:"Hammers the glutes and hamstrings differently. Keep upright posture.", muscles:["Cardio","Glutes","Hamstrings"], isTimer:true }
+        ]
+      },
+      { title:"Bodyweight Finisher", tag:"tricep", rest:"15s between exercises, 60s between rounds",
+        exercises: [
+          { id:"caf1", name:"Burpees", sets:3, detail:"3 × 10 reps — full extension at top, chest to floor at bottom", tip:"In the open floor / stretching area. No half reps.", muscles:["Cardio","Chest","Quads","Core"] },
+          { id:"caf2", name:"Mountain climbers", sets:3, detail:"3 × 30s — drive knees fast, hips level", tip:"Think of it as running in a plank. Core stays locked.", muscles:["Cardio","Core","Hip flexors"], isTimer:true },
+          { id:"caf3", name:"Jump rope (or simulate)", sets:3, detail:"3 × 45s — fast feet, light on the toes", tip:"PF has jump ropes in some locations. If not, simulate the motion — still gets your heart rate up.", muscles:["Cardio","Calves","Coordination"], isTimer:true }
+        ]
+      },
+      { title:"Cool-down", tag:"cool", note:"~8 min — walk + stretch",
+        exercises: [
+          { id:"cacd1", name:"Treadmill slow walk", sets:1, detail:"3 min — 2.5 mph, let heart rate come down gradually", tip:"Never stop dead after high intensity — walk it off.", muscles:["Cardio"], isTimer:true },
+          { id:"cacd2", name:"Standing hip flexor stretch", sets:1, detail:"Hold 30–45s each side — lunge position, sink hips", tip:"Your hip flexors take a beating during sprints. Don't skip this.", muscles:["Hip flexors"], isTimer:true },
+          { id:"cacd3", name:"Seated hamstring stretch", sets:1, detail:"Hold 45s each side", tip:"Flex the foot for a deeper pull through the calf too.", muscles:["Hamstrings","Calves"], isTimer:true },
+          { id:"cacd4", name:"Standing calf stretch against wall", sets:1, detail:"Hold 30s each side — straight leg then slightly bent", tip:"Calves are always the most neglected post-cardio stretch.", muscles:["Calves","Soleus"], isTimer:true }
+        ]
+      }
+    ]
+  },
+  {
+    id: "explosiveness-1", name: "Explosiveness & Power", tag: "Power", tagStyle: "tag-amber",
+    duration: "~65 min", intensity: "High", addedDate: "2026-05-31",
+    sections: [
+      { title:"Warm-up", tag:"warm", note:"~10 min — CNS activation, not just stretching",
+        exercises: [
+          { id:"exw1", name:"Treadmill jog → strides", sets:1, detail:"3 min jog, then 4 × 20s accelerations up to 80% sprint pace", tip:"Strides prime the nervous system for explosive output. Not a warm-up jog — build speed each one.", muscles:["Cardio","Full body"], isTimer:true },
+          { id:"exw2", name:"Leg swings + ankle circles", sets:1, detail:"15 swings each direction + 10 ankle circles each foot", tip:"Explosive work is high-impact. Ankles and hips need to be mobile.", muscles:["Hip flexors","Ankles","Glutes"], isTimer:true },
+          { id:"exw3", name:"Bodyweight jump squat (easy)", sets:2, detail:"2 × 8 reps — 50% effort, focus on landing softly", tip:"Practice the landing mechanics before going heavy. Land toe-heel, absorb with your knees.", muscles:["Quads","Glutes","Calves"] },
+          { id:"exw4", name:"Banded lateral walk", sets:2, detail:"2 × 10 steps each direction — resistance band just above knees", tip:"Activates the glutes before plyometric work. Grab a band from the stretching area.", muscles:["Glutes","Hip abductors"] }
+        ]
+      },
+      { title:"Lower Body Power", tag:"chest", rest:"90–120s — full recovery between sets",
+        exercises: [
+          { id:"exl1", name:"Smith machine jump squat", sets:4, detail:"4 × 6 reps — light bar (25–45 lbs), explode up, land soft", tip:"This is about speed, not load. Bar weight should let you move fast. Land with bent knees.", muscles:["Quads","Glutes","Calves"] },
+          { id:"exl2", name:"Broad jump (standing long jump)", sets:4, detail:"4 × 5 jumps — max horizontal distance each rep", tip:"Use the open floor area. Two-foot takeoff, land balanced, reset between jumps.", muscles:["Quads","Glutes","Hamstrings","Calves"] },
+          { id:"exl3", name:"Single-leg box step-up explosion", sets:3, detail:"3 × 8 reps each leg — drive up and drive knee through", tip:"Use a plyometric box or a sturdy bench. Drive the free knee up at the top for full power.", muscles:["Quads","Glutes","Hip flexors"] }
+        ]
+      },
+      { title:"Upper Body Power", tag:"back", rest:"90s between sets",
+        exercises: [
+          { id:"exu1", name:"Explosive push-up", sets:4, detail:"4 × 8 reps — hands leave the floor at the top", tip:"Full chest to floor, then drive up hard enough to get air. If too easy, elevate feet. If too hard, do fast regular push-ups.", muscles:["Chest","Front delt","Tricep"] },
+          { id:"exu2", name:"Medicine ball slam", sets:4, detail:"4 × 10 reps — overhead to floor, max effort", tip:"PF has slam balls in the functional area. Full overhead extension, slam straight down, catch on the bounce.", muscles:["Core","Shoulders","Lats","Tricep"] },
+          { id:"exu3", name:"Cable chest throw simulation", sets:3, detail:"3 × 10 reps — fast explosive push on cable machine, light weight", tip:"Set cable at chest height, stand sideways. Drive the handle across your body as fast as possible. Reset slow.", muscles:["Chest","Core","Front delt"] }
+        ]
+      },
+      { title:"Core Power", tag:"shoulder", rest:"45–60s",
+        exercises: [
+          { id:"exc1", name:"Rotational medicine ball throw (wall)", sets:3, detail:"3 × 10 reps each side — rotate and throw from hip", tip:"Stand sideways to a wall. Load rotation from the hips, throw with force. This trains rotational power for every sport.", muscles:["Core","Obliques","Hips"] },
+          { id:"exc2", name:"Tuck jump", sets:3, detail:"3 × 8 reps — drive knees to chest at peak height", tip:"Land softly each time. Full reset between reps — this isn't a speed drill, it's a height drill.", muscles:["Quads","Calves","Core","Hip flexors"] },
+          { id:"exc3", name:"Hollow body hold", sets:3, detail:"3 × 20–30s — lower back pressed to floor, legs low, arms overhead", tip:"This builds the stiff core needed to transfer explosive power. If your lower back lifts, raise your legs.", muscles:["Core","Hip flexors"], isTimer:true }
+        ]
+      },
+      { title:"Conditioning Finisher", tag:"tricep", rest:"30s between rounds",
+        exercises: [
+          { id:"exf1", name:"Treadmill all-out sprint", sets:3, detail:"3 × 20s absolute max effort — 11–15 mph", tip:"These are 100% effort. 20 seconds only. Hold the sides to get on at speed, or build up from a jog.", muscles:["Cardio","Quads","Hamstrings","Calves"] },
+          { id:"exf2", name:"Lateral bound (skater jump)", sets:3, detail:"3 × 10 reps each side — single leg, bound laterally, stick the landing", tip:"Open area. Jump off one foot, land on the other, hold 1 second before the next rep. Builds lateral explosive power.", muscles:["Glutes","Quads","Hip abductors"] }
+        ]
+      },
+      { title:"Cool-down", tag:"cool", note:"~10 min — nervous system needs this",
+        exercises: [
+          { id:"excd1", name:"Treadmill slow walk", sets:1, detail:"3 min — 2.5 mph, diaphragmatic breathing", tip:"Breathe in for 4 counts, out for 6. Brings your nervous system down from high alert.", muscles:["Cardio"], isTimer:true },
+          { id:"excd2", name:"Standing quad stretch", sets:1, detail:"Hold 30–45s each side", tip:"Quads take the most impact from jump landings.", muscles:["Quads"], isTimer:true },
+          { id:"excd3", name:"Pigeon pose", sets:1, detail:"Hold 45–60s each side — use a mat", tip:"Hip flexors and glutes fire hard in explosive movements. Don't skip this.", muscles:["Hip flexors","Glutes"], isTimer:true },
+          { id:"excd4", name:"Child's pose with lat reach", sets:1, detail:"Hold 45s — arms stretched forward, breathe deep", tip:"Decompresses the spine after all the landing impact.", muscles:["Lats","Lower back","Thoracic spine"], isTimer:true },
+          { id:"excd5", name:"Wrist + ankle mobility circles", sets:1, detail:"10 circles each direction for wrists and ankles", tip:"These joints absorb the most force during explosive work. Finish by giving them some love.", muscles:["Wrists","Ankles"], isTimer:true }
+        ]
+      }
+    ]
+  },
+  {
     id: "legs-1", name: "Legs Day", tag: "Legs", tagStyle: "tag-purple",
     duration: "~85 min", intensity: "High", addedDate: "2026-05-31",
     sections: [

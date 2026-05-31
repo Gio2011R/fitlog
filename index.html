@@ -495,6 +495,183 @@
 // ═══════════════════════════════════════════════════════
 const DEFAULT_WORKOUTS = [
   {
+    id: "upper-body-2", name: "Upper Body + Arms (Moderate)", tag: "Upper Body", tagStyle: "tag-green",
+    duration: "~60 min", intensity: "Moderate", addedDate: "2026-05-31",
+    sections: [
+      { title:"Warm-up", tag:"warm", note:"~8 min — take your time, no rush",
+        exercises: [
+          { id:"mu_wu1", name:"Treadmill easy walk", sets:1, detail:"5 min — comfortable pace, arms swinging naturally", tip:"No need to jog. A brisk walk is enough to get blood moving before upper body work.", muscles:["Cardio","Full body"], isTimer:true },
+          { id:"mu_wu2", name:"Arm circles + shoulder rolls", sets:1, detail:"20 circles each direction, 10 shoulder rolls forward and back", tip:"Go slow. Feel the shoulder joint loosen up before any pressing.", muscles:["Shoulder","Rotator cuff"], isTimer:true },
+          { id:"mu_wu3", name:"Cable face pulls (very light)", sets:2, detail:"2 × 15 reps — lightest weight on the stack", tip:"Focus purely on the motion and feeling the rear delts. Weight doesn't matter here.", muscles:["Rear delt","Rotator cuff"] }
+        ]
+      },
+      { title:"Chest", tag:"chest", rest:"90s–2 min between sets",
+        exercises: [
+          { id:"mu_c1", name:"Chest press machine", sets:3, detail:"3 × 12 reps — moderate weight, same weight all sets", tip:"Pick a weight you can do 15 with. If you can't complete all 12, drop the weight — no ego here.", muscles:["Chest","Front delt","Tricep"] },
+          { id:"mu_c2", name:"Pec deck fly machine", sets:3, detail:"3 × 12 reps — slow squeeze at the centre", tip:"Keep a slight bend in your elbows throughout. Feel the stretch at the wide position.", muscles:["Chest"] }
+        ]
+      },
+      { title:"Back", tag:"back", rest:"90s between sets",
+        exercises: [
+          { id:"mu_b1", name:"Lat pulldown machine", sets:3, detail:"3 × 12 reps — moderate grip, controlled tempo", tip:"No yanking. Pull the bar to your upper chest and let it rise slowly. 2 second hold at the bottom.", muscles:["Lats","Bicep"] },
+          { id:"mu_b2", name:"Seated cable row", sets:3, detail:"3 × 12 reps — light to moderate weight", tip:"Sit tall. Squeeze your shoulder blades together at the end of each rep.", muscles:["Mid back","Rhomboids"] }
+        ]
+      },
+      { title:"Shoulders", tag:"shoulder", rest:"90s between sets",
+        exercises: [
+          { id:"mu_s1", name:"Shoulder press machine", sets:3, detail:"3 × 12 reps — comfortable weight", tip:"Elbows in front of your body at the bottom. Don't flare them out to the sides.", muscles:["Front delt","Side delt","Tricep"] },
+          { id:"mu_s2", name:"Cable lateral raise (single arm)", sets:2, detail:"2 × 15 reps each side — very light", tip:"If your shoulder shrugs up, the weight is too heavy. Go lighter and feel the side delt.", muscles:["Side delt"] }
+        ]
+      },
+      { title:"Biceps", tag:"bicep", rest:"60–90s between sets",
+        exercises: [
+          { id:"mu_bi1", name:"Dumbbell curl", sets:3, detail:"3 × 12 reps — alternate arms, controlled movement", tip:"No swinging. If you're leaning back to get the weight up, go lighter.", muscles:["Bicep","Brachialis"] },
+          { id:"mu_bi2", name:"Cable hammer curl (rope)", sets:2, detail:"2 × 15 reps — neutral grip, light weight", tip:"Slow and steady. Feel the forearm and bicep working together.", muscles:["Bicep short head","Brachioradialis"] }
+        ]
+      },
+      { title:"Triceps", tag:"tricep", rest:"60–90s between sets",
+        exercises: [
+          { id:"mu_tr1", name:"Tricep pushdown (straight bar)", sets:3, detail:"3 × 12 reps — light weight, full lockout", tip:"Elbows stay pinned to your sides the whole time. Lock out at the bottom.", muscles:["Lateral head","Medial head"] },
+          { id:"mu_tr2", name:"Tricep kickback (dumbbell)", sets:2, detail:"2 × 15 reps each arm — elbow at 90°, extend back", tip:"Lean on a bench for support. Upper arm stays parallel to the floor throughout.", muscles:["Long head tricep"] }
+        ]
+      },
+      { title:"Cool-down", tag:"cool", note:"~8 min — slow breathing, full holds",
+        exercises: [
+          { id:"mu_cd1", name:"Cross-body shoulder stretch", sets:1, detail:"Hold 30–45s each side", tip:"Keep the shoulder down. Breathe deeply into it.", muscles:["Rear delt","Shoulder capsule"], isTimer:true },
+          { id:"mu_cd2", name:"Overhead tricep stretch", sets:1, detail:"Hold 30s each side", tip:"Gently press the elbow back with your other hand.", muscles:["Tricep long head"], isTimer:true },
+          { id:"mu_cd3", name:"Chest opener — hands clasped behind back", sets:1, detail:"Hold 30–45s — squeeze shoulder blades, lift chest", tip:"Can do this standing. Great for posture after pressing.", muscles:["Chest","Front delt"], isTimer:true },
+          { id:"mu_cd4", name:"Seated neck and trap stretch", sets:1, detail:"Hold 20s each side — tilt ear to shoulder gently", tip:"Upper traps get tight from pulling movements. Don't force it.", muscles:["Traps","Neck"], isTimer:true }
+        ]
+      }
+    ]
+  },
+  {
+    id: "legs-2", name: "Legs Day (Moderate)", tag: "Legs", tagStyle: "tag-purple",
+    duration: "~60 min", intensity: "Moderate", addedDate: "2026-05-31",
+    sections: [
+      { title:"Warm-up", tag:"warm", note:"~8 min — joint prep and activation",
+        exercises: [
+          { id:"ml_wu1", name:"Treadmill easy walk", sets:1, detail:"5 min — flat, comfortable pace", tip:"No incline needed. Just get the legs warm and blood flowing.", muscles:["Cardio","Full body"], isTimer:true },
+          { id:"ml_wu2", name:"Bodyweight squat", sets:2, detail:"2 × 10 reps — slow, controlled, heels flat", tip:"Take 3 seconds to lower, pause at the bottom, stand back up. Just practice the pattern.", muscles:["Quads","Glutes","Hamstrings"] },
+          { id:"ml_wu3", name:"Hip flexor stretch + glute activation", sets:1, detail:"Hold 20s each side in a lunge, then 10 glute squeezes standing", tip:"Most people have tight hip flexors. This unglues them before leg pressing.", muscles:["Hip flexors","Glutes"], isTimer:true }
+        ]
+      },
+      { title:"Quads", tag:"chest", rest:"90s–2 min between sets",
+        exercises: [
+          { id:"ml_q1", name:"Leg press machine", sets:3, detail:"3 × 12 reps — light to moderate weight, full range", tip:"Don't load up heavy. Use a weight where you feel your quads the whole rep. Slow down.", muscles:["Quads","Glutes"] },
+          { id:"ml_q2", name:"Leg extension machine", sets:3, detail:"3 × 15 reps — light weight, squeeze at the top", tip:"This is a pure isolation move. Go light, slow, feel every inch of the quad.", muscles:["Quads"] }
+        ]
+      },
+      { title:"Hamstrings & Glutes", tag:"back", rest:"90s between sets",
+        exercises: [
+          { id:"ml_h1", name:"Lying leg curl machine", sets:3, detail:"3 × 12 reps — controlled, full stretch at bottom", tip:"Don't let the weight drop. Control the return — that's where you build the muscle.", muscles:["Hamstrings"] },
+          { id:"ml_h2", name:"Cable pull-through (light)", sets:3, detail:"3 × 12 reps — hinge at hips, squeeze glutes at top", tip:"This is a hip hinge pattern. Push your hips back on the way down, drive them forward at the top.", muscles:["Glutes","Hamstrings"] }
+        ]
+      },
+      { title:"Calves", tag:"bicep", rest:"60s between sets",
+        exercises: [
+          { id:"ml_c1", name:"Seated calf raise machine", sets:3, detail:"3 × 15 reps — slow, full range of motion", tip:"Pause 1 second at the bottom stretch. Most people never fully stretch their calves.", muscles:["Soleus"] },
+          { id:"ml_c2", name:"Standing calf raise (bodyweight)", sets:2, detail:"2 × 20 reps — toes on a step or plate, slow descent", tip:"Bodyweight only is plenty here. Focus on the stretch at the bottom.", muscles:["Gastrocnemius"] }
+        ]
+      },
+      { title:"Cool-down", tag:"cool", note:"~8 min — full holds, deep breathing",
+        exercises: [
+          { id:"ml_cd1", name:"Standing quad stretch", sets:1, detail:"Hold 30s each side — use a wall for balance", tip:"No need to yank your foot up hard. A gentle pull is enough.", muscles:["Quads"], isTimer:true },
+          { id:"ml_cd2", name:"Seated hamstring stretch", sets:1, detail:"Hold 45s each side — reach gently toward toes", tip:"Don't force the range. Breathe out and let it deepen naturally.", muscles:["Hamstrings","Calves"], isTimer:true },
+          { id:"ml_cd3", name:"Supine glute stretch (figure four)", sets:1, detail:"Hold 45s each side — lying on your back", tip:"Cross one ankle over the opposite knee, pull toward chest. Great for deep glute tightness.", muscles:["Glutes","Piriformis"], isTimer:true },
+          { id:"ml_cd4", name:"Child's pose", sets:1, detail:"Hold 45–60s — knees wide, breathe into your lower back", tip:"A perfect reset after any leg day, light or heavy.", muscles:["Lower back","Hips"], isTimer:true }
+        ]
+      }
+    ]
+  },
+  {
+    id: "cardio-2", name: "Cardio (Moderate)", tag: "Cardio", tagStyle: "tag-blue",
+    duration: "~50 min", intensity: "Moderate", addedDate: "2026-05-31",
+    sections: [
+      { title:"Warm-up", tag:"warm", note:"~5 min — just get moving",
+        exercises: [
+          { id:"mc_wu1", name:"Treadmill easy walk", sets:1, detail:"5 min — 3 mph, let your body settle in", tip:"No rush. This is supposed to feel easy.", muscles:["Cardio","Full body"], isTimer:true }
+        ]
+      },
+      { title:"Treadmill Steady State", tag:"chest", rest:"None — continuous",
+        exercises: [
+          { id:"mc_t1", name:"Treadmill brisk walk or light jog", sets:1, detail:"15 min — 3.5–5 mph, conversational pace", tip:"You should be able to say a full sentence without gasping. If you can't, slow down. This is zone 2.", muscles:["Cardio","Quads","Calves"], isTimer:true },
+          { id:"mc_t2", name:"Treadmill incline walk", sets:1, detail:"8 min — 4–6% incline, 3.5 mph", tip:"Incline dramatically increases intensity without speed. Great for burning calories while being easier on the joints.", muscles:["Cardio","Glutes","Calves"], isTimer:true }
+        ]
+      },
+      { title:"Stationary Bike", tag:"back", rest:"None — continuous",
+        exercises: [
+          { id:"mc_b1", name:"Steady bike ride", sets:1, detail:"10 min — moderate resistance, 70–80 rpm", tip:"Keep a smooth consistent pedal stroke. Resistance should feel like a gentle uphill ride.", muscles:["Cardio","Quads","Glutes"], isTimer:true },
+          { id:"mc_b2", name:"Light bike intervals", sets:4, detail:"4 × 1 min slightly harder effort, 1 min easy", tip:"Not sprinting — just bump up the pace a notch then back off. You should feel the difference but not be out of breath.", muscles:["Cardio","Quads"] }
+        ]
+      },
+      { title:"Elliptical", tag:"shoulder", rest:"None — continuous",
+        exercises: [
+          { id:"mc_e1", name:"Elliptical steady pace", sets:1, detail:"10 min — moderate resistance, push and pull the handles equally", tip:"Upright posture. Don't lean on the handles — let your legs do the work.", muscles:["Cardio","Full body"], isTimer:true }
+        ]
+      },
+      { title:"Low-Impact Finisher", tag:"tricep", rest:"30s between exercises",
+        exercises: [
+          { id:"mc_f1", name:"Bodyweight squats", sets:3, detail:"3 × 15 reps — slow and controlled", tip:"Use the open floor area. Keep heels flat and knees behind toes.", muscles:["Quads","Glutes"] },
+          { id:"mc_f2", name:"Step touch side-to-side", sets:3, detail:"3 × 30s — rhythmic lateral step, arms swinging", tip:"No jumping needed. This keeps your heart rate up without pounding your joints.", muscles:["Cardio","Glutes","Hip abductors"], isTimer:true },
+          { id:"mc_f3", name:"Marching in place with high knees", sets:3, detail:"3 × 30s — deliberate, drive knee to hip height", tip:"Think of it as slow-motion high knees. You control the pace.", muscles:["Cardio","Hip flexors","Core"], isTimer:true }
+        ]
+      },
+      { title:"Cool-down", tag:"cool", note:"~8 min — bring it all the way down",
+        exercises: [
+          { id:"mc_cd1", name:"Treadmill slow walk", sets:1, detail:"3 min — 2–2.5 mph, deep breathing", tip:"In for 4 counts, out for 6. Let your heart rate come down slowly.", muscles:["Cardio"], isTimer:true },
+          { id:"mc_cd2", name:"Standing hip flexor stretch", sets:1, detail:"Hold 30s each side — lunge position, sink hips low", tip:"Hip flexors tighten up during all forms of cardio. Give them a proper hold.", muscles:["Hip flexors"], isTimer:true },
+          { id:"mc_cd3", name:"Seated hamstring stretch", sets:1, detail:"Hold 30–45s each side", tip:"Legs straight, reach gently. No bouncing.", muscles:["Hamstrings"], isTimer:true },
+          { id:"mc_cd4", name:"Calf stretch against wall", sets:1, detail:"Hold 30s each leg — straight then slightly bent knee", tip:"Straight leg hits the gastrocnemius. Bent knee hits the soleus (lower calf).", muscles:["Calves","Soleus"], isTimer:true }
+        ]
+      }
+    ]
+  },
+  {
+    id: "explosiveness-2", name: "Explosiveness & Power (Moderate)", tag: "Power", tagStyle: "tag-amber",
+    duration: "~55 min", intensity: "Moderate", addedDate: "2026-05-31",
+    sections: [
+      { title:"Warm-up", tag:"warm", note:"~10 min — don't skip this for power work",
+        exercises: [
+          { id:"me_wu1", name:"Treadmill easy jog", sets:1, detail:"5 min — comfortable jog, no need to push pace", tip:"You need your muscles warm before any jumping. Cold muscles and jumping = injury risk.", muscles:["Cardio","Full body"], isTimer:true },
+          { id:"me_wu2", name:"Leg swings + ankle circles", sets:1, detail:"10 swings each direction, 10 ankle circles each foot", tip:"These joints take impact during power work. Loosen them up properly.", muscles:["Hip flexors","Ankles","Glutes"], isTimer:true },
+          { id:"me_wu3", name:"Bodyweight squat — slow and intentional", sets:2, detail:"2 × 10 reps — 3 seconds down, pause, stand up", tip:"Practice landing from the lowest point. This teaches your muscles how to absorb force safely.", muscles:["Quads","Glutes","Hamstrings"] },
+          { id:"me_wu4", name:"Glute bridge (floor)", sets:2, detail:"2 × 15 reps — drive hips up, squeeze at top", tip:"Activates glutes before power work. Lie on the floor in the stretching area.", muscles:["Glutes","Hamstrings"] }
+        ]
+      },
+      { title:"Lower Body Power", tag:"chest", rest:"90s–2 min — rest fully between sets",
+        exercises: [
+          { id:"me_l1", name:"Box step-up (controlled)", sets:3, detail:"3 × 10 reps each leg — step up, drive knee up, step down slowly", tip:"Use a bench or plyometric box. No jumping yet. Focus on the drive and a controlled descent.", muscles:["Quads","Glutes","Hip flexors"] },
+          { id:"me_l2", name:"Squat jump (low height)", sets:3, detail:"3 × 6 reps — squat down to parallel, jump just a few inches off the ground", tip:"Land toe-heel with soft knees. The point isn't height — it's learning to generate and absorb force.", muscles:["Quads","Glutes","Calves"] },
+          { id:"me_l3", name:"Lateral step-over (low box or line)", sets:3, detail:"3 × 8 reps each side — step laterally over a low object or line on the floor", tip:"Keep your weight over the landing leg. This builds lateral stability for power movements.", muscles:["Glutes","Hip abductors","Quads"] }
+        ]
+      },
+      { title:"Upper Body Power", tag:"back", rest:"90s between sets",
+        exercises: [
+          { id:"me_u1", name:"Fast push-up", sets:3, detail:"3 × 8 reps — push as fast as you can, lower slowly", tip:"Hands don't need to leave the floor. Just drive up explosively, then 3-count descent.", muscles:["Chest","Front delt","Tricep"] },
+          { id:"me_u2", name:"Medicine ball push (wall press)", sets:3, detail:"3 × 10 reps — press ball into wall from chest, absorb the bounce", tip:"Light medicine ball. Stand 1 foot from the wall. It's a catch-and-press drill, not a throw.", muscles:["Chest","Tricep","Core"] },
+          { id:"me_u3", name:"Cable fast push (chest height)", sets:3, detail:"3 × 10 reps each side — stand sideways, push handle across body fast, return slow", tip:"Very light weight. Speed on the push, control on the return. Trains rotational power.", muscles:["Chest","Core","Front delt"] }
+        ]
+      },
+      { title:"Core Power", tag:"shoulder", rest:"60s between sets",
+        exercises: [
+          { id:"me_c1", name:"Dead bug (slow)", sets:3, detail:"3 × 10 reps — opposite arm and leg lower together, lower back glued to floor", tip:"This looks easy and feels hard when done right. Press your lower back into the floor the whole time.", muscles:["Core","Hip flexors"] },
+          { id:"me_c2", name:"Plank shoulder taps", sets:3, detail:"3 × 20 taps (10 each side) — tap shoulder with opposite hand, stay still", tip:"Hips shouldn't rotate. The slower the better. This is anti-rotation core strength.", muscles:["Core","Shoulders","Obliques"], isTimer:true },
+          { id:"me_c3", name:"Rotational medicine ball toss (light, against wall)", sets:3, detail:"3 × 8 reps each side — rotate from hips, press ball against wall", tip:"Use the lightest medicine ball available. Focus on hip rotation, not arm strength.", muscles:["Core","Obliques","Hips"] }
+        ]
+      },
+      { title:"Cool-down", tag:"cool", note:"~8 min — joints need care after power work",
+        exercises: [
+          { id:"me_cd1", name:"Treadmill slow walk", sets:1, detail:"3 min — 2.5 mph, breathe deeply", tip:"Never stop dead after explosive work. Walk it off.", muscles:["Cardio"], isTimer:true },
+          { id:"me_cd2", name:"Standing quad stretch", sets:1, detail:"Hold 30–45s each side", tip:"Quads absorb all the landing impact. Don't rush this.", muscles:["Quads"], isTimer:true },
+          { id:"me_cd3", name:"Hip flexor lunge stretch", sets:1, detail:"Hold 30s each side — front knee bent, back knee on floor", tip:"Use a mat. You can do this in the stretching area.", muscles:["Hip flexors","Quads"], isTimer:true },
+          { id:"me_cd4", name:"Calf + ankle stretch", sets:1, detail:"Hold 30s each side against wall — straight and bent knee version", tip:"Ankles take a lot of impact from jumping and stepping. Give them proper attention.", muscles:["Calves","Ankles","Soleus"], isTimer:true },
+          { id:"me_cd5", name:"Child's pose", sets:1, detail:"Hold 45–60s — wide knees, arms forward, breathe into your back", tip:"A full nervous system reset to close out the session.", muscles:["Lower back","Hips","Lats"], isTimer:true }
+        ]
+      }
+    ]
+  },
+  {
     id: "cardio-1", name: "Cardio Burn", tag: "Cardio", tagStyle: "tag-blue",
     duration: "~60 min", intensity: "High",  addedDate: "2026-05-31",
     sections: [

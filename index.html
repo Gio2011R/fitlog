@@ -347,6 +347,68 @@
 
 const DEFAULT_WORKOUTS = [
   {
+    id: "legs-1",
+    name: "Legs Day",
+    tag: "Legs",
+    tagStyle: "tag-purple",
+    duration: "~85 min",
+    intensity: "High",
+    addedDate: "2026-05-31",
+    sections: [
+      {
+        title: "Warm-up", tag: "warm",
+        note: "~10 min — no rest needed between movements",
+        exercises: [
+          { id:"lw1", name:"Treadmill jog", sets:1, detail:"5 min — start easy, build to a moderate pace", tip:"Increases blood flow to quads, hamstrings, and glutes before loading them", muscles:["Cardio","Full body"], isTimer:true },
+          { id:"lw2", name:"Leg swings (forward & lateral)", sets:1, detail:"20 swings each direction, each leg", tip:"Hold a machine or wall for balance. Full range of motion.", muscles:["Hip flexors","Glutes","Hamstrings"], isTimer:true },
+          { id:"lw3", name:"Bodyweight squat", sets:2, detail:"2 × 15 reps — slow, controlled, full depth", tip:"Pause at the bottom for 1 second. Knees track over toes.", muscles:["Quads","Glutes","Hamstrings"] },
+          { id:"lw4", name:"Hip circle + glute activation", sets:1, detail:"10 circles each direction, each leg — standing", tip:"Grab a resistance band from the stretching area if available", muscles:["Glutes","Hip flexors"], isTimer:true }
+        ]
+      },
+      {
+        title: "Quads", tag: "chest", rest: "90s",
+        exercises: [
+          { id:"lq1", name:"Leg press machine", sets:4, detail:"4 × 8–10 reps — increase weight each set", tip:"Feet shoulder-width, mid-plate. Lower until knees hit 90°. Don't lock out at top.", muscles:["Quads","Glutes","Hamstrings"] },
+          { id:"lq2", name:"Leg extension machine", sets:3, detail:"3 × 12 reps — slow 3-count eccentric", tip:"Pause 1s at full extension. Keep lower back pressed into seat.", muscles:["Quads"] },
+          { id:"lq3", name:"Smith machine Bulgarian split squat", sets:3, detail:"3 × 10 reps each leg — rear foot on bench", tip:"Front foot far enough forward that knee stays behind toes at bottom. Go slow.", muscles:["Quads","Glutes","Hip flexors"] }
+        ]
+      },
+      {
+        title: "Hamstrings & Glutes", tag: "back", rest: "90s",
+        exercises: [
+          { id:"lh1", name:"Lying leg curl machine", sets:4, detail:"4 × 10 reps — full stretch at bottom, squeeze at top", tip:"Keep hips pressed flat into the pad. Don't let them rise.", muscles:["Hamstrings"] },
+          { id:"lh2", name:"Cable pull-through (glute focus)", sets:3, detail:"3 × 12 reps — rope between legs, hinge at hips", tip:"Low cable, rope attachment. Push hips forward to stand, squeeze glutes hard at top.", muscles:["Glutes","Hamstrings","Lower back"] },
+          { id:"lh3", name:"Smith machine hip thrust", sets:3, detail:"3 × 12 reps — upper back on bench, bar across hips", tip:"Drive through heels, fully extend hips at top. Add a pad for comfort.", muscles:["Glutes","Hamstrings"] }
+        ]
+      },
+      {
+        title: "Calves", tag: "bicep", rest: "45s",
+        exercises: [
+          { id:"lc1", name:"Seated calf raise machine", sets:4, detail:"4 × 15 reps — full range, pause at stretch", tip:"Lower slowly for a 3-count. Feel the full stretch at the bottom each rep.", muscles:["Soleus"] },
+          { id:"lc2", name:"Standing calf raise (Smith machine)", sets:3, detail:"3 × 15 reps — toes on weight plate for range", tip:"Stack a 25lb plate under your toes. Slow and deliberate — no bouncing.", muscles:["Gastrocnemius"] }
+        ]
+      },
+      {
+        title: "Finisher", tag: "shoulder", rest: "60s",
+        exercises: [
+          { id:"lf1", name:"Leg press drop set", sets:1, detail:"1 drop set — 10 reps heavy, strip weight, 10 more, strip again, 10 more", tip:"Stay on the machine and have a partner strip weight or pre-load lighter plates on the outside. No rest between drops.", muscles:["Quads","Glutes"] },
+          { id:"lf2", name:"Walking lunge (bodyweight)", sets:3, detail:"3 × 20 steps — long stride, torso upright", tip:"Use the open floor area near the stretching zone. Knee hovers 1 inch from floor.", muscles:["Quads","Glutes","Hamstrings"] }
+        ]
+      },
+      {
+        title: "Cool-down", tag: "cool",
+        note: "~10 min — hold each stretch 30–45s, breathe deeply",
+        exercises: [
+          { id:"lcd1", name:"Standing quad stretch", sets:1, detail:"Hold 30–45s each side — pull heel to glute", tip:"Keep knee pointing straight down. Use a wall for balance if needed.", muscles:["Quads"], isTimer:true },
+          { id:"lcd2", name:"Seated hamstring stretch", sets:1, detail:"Hold 45s each side — leg straight, reach for toes", tip:"Flex your foot toward you for a deeper stretch along the calf too.", muscles:["Hamstrings","Calves"], isTimer:true },
+          { id:"lcd3", name:"Pigeon pose (hip flexor & glute)", sets:1, detail:"Hold 45–60s each side — use a mat", tip:"Best stretch for glutes after heavy hip thrusts and split squats. Breathe into it.", muscles:["Hip flexors","Glutes"], isTimer:true },
+          { id:"lcd4", name:"Calf stretch against wall", sets:1, detail:"Hold 30s each side — heel flat, lean into wall", tip:"Straight leg = gastroc stretch. Slightly bent knee = soleus stretch. Do both.", muscles:["Calves","Soleus"], isTimer:true },
+          { id:"lcd5", name:"Child's pose", sets:1, detail:"Hold 45–60s — knees wide, arms forward", tip:"Decompresses the lower back and hips after all that loading.", muscles:["Lower back","Hips"], isTimer:true }
+        ]
+      }
+    ]
+  },
+  {
     id: "upper-body-1",
     name: "Upper Body + Arms",
     tag: "Upper Body",
@@ -422,6 +484,11 @@ function getWorkouts() {
   try {
     const stored = JSON.parse(localStorage.getItem('fl_workouts') || 'null');
     if (!stored) { saveWorkouts(DEFAULT_WORKOUTS); return DEFAULT_WORKOUTS; }
+    let changed = false;
+    DEFAULT_WORKOUTS.forEach(dw => {
+      if (!stored.find(w => w.id === dw.id)) { stored.unshift(dw); changed = true; }
+    });
+    if (changed) saveWorkouts(stored);
     return stored;
   } catch(e) { return DEFAULT_WORKOUTS; }
 }
